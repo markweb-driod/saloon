@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Luxury hair collections showcase">
+  <rect width="1200" height="900" fill="#07111F"/>
+  <rect x="40" y="40" width="1120" height="820" rx="36" fill="url(#bg)"/>
+  <circle cx="950" cy="240" r="220" fill="#C9A24B" fill-opacity="0.18"/>
+  <circle cx="260" cy="660" r="260" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M420 300c30-80 90-144 196-144 88 0 156 46 196 118-30 42-78 78-128 95-58 20-118 20-174 0-56-19-100-54-119-95 14-8 17-4 25-24Z" fill="#F5E8CC"/>
+  <path d="M420 320c46 44 104 70 167 70 63 0 121-26 167-70 13 53 9 145-38 204-34 42-87 67-129 67-47 0-97-21-131-67-45-59-53-155-36-204Z" fill="#0E172F"/>
+  <path d="M500 300c36 24 90 36 146 36 48 0 94-10 128-34-10 106-47 188-96 218-53 32-119 32-171 0-57-32-93-115-107-221 24 24 63 38 100 1Z" fill="#C9A24B"/>
+  <rect x="140" y="610" width="260" height="120" rx="28" fill="#FFFFFF" fill-opacity="0.1"/>
+  <rect x="160" y="628" width="220" height="14" rx="7" fill="#F5E8CC" fill-opacity="0.8"/>
+  <rect x="160" y="660" width="164" height="12" rx="6" fill="#F5E8CC" fill-opacity="0.5"/>
+  <rect x="700" y="610" width="320" height="140" rx="32" fill="#0E172F" fill-opacity="0.82"/>
+  <path d="M760 620c66-44 126-42 176 0" stroke="#C9A24B" stroke-width="10" stroke-linecap="round"/>
+  <rect x="770" y="642" width="160" height="16" rx="8" fill="#F5E8CC" fill-opacity="0.75"/>
+  <rect x="770" y="674" width="122" height="12" rx="6" fill="#F5E8CC" fill-opacity="0.55"/>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1080" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F1C37"/>
+      <stop offset="1" stop-color="#23355E"/>
+    </linearGradient>
+  </defs>
+</svg>

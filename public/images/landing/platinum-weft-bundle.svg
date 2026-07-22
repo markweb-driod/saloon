@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-label="Platinum weft bundle illustration">
+  <rect width="900" height="700" rx="36" fill="#F4EEDC"/>
+  <rect x="80" y="70" width="740" height="560" rx="30" fill="#0C162D"/>
+  <path d="M328 220c36-58 89-90 158-90 80 0 142 40 174 110-30 16-66 26-111 29-62 4-129 2-190-20-22-8-34-18-31-29Z" fill="#DDB569"/>
+  <path d="M302 252c46-32 93-44 147-44 69 0 127 27 172 72-20 71-67 125-129 152-58 24-127 24-184 0-58-22-103-71-122-138 30-13 56-20 116-42Z" fill="#F6E8C8"/>
+  <rect x="230" y="434" width="440" height="118" rx="24" fill="#C9A24B"/>
+  <rect x="270" y="470" width="360" height="16" rx="8" fill="#0C162D" fill-opacity="0.92"/>
+  <rect x="270" y="500" width="260" height="12" rx="6" fill="#0C162D" fill-opacity="0.72"/>
+</svg>

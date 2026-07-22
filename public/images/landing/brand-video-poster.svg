@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Waifuu brand film poster">
+  <rect width="1600" height="900" fill="#08111E"/>
+  <rect x="56" y="56" width="1488" height="788" rx="44" fill="url(#bg)"/>
+  <circle cx="1246" cy="256" r="220" fill="#C9A24B" fill-opacity="0.18"/>
+  <circle cx="400" cy="698" r="260" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M540 350c72-130 190-198 339-198 180 0 305 102 338 260-34 26-88 45-154 45-122 0-242-34-339-96-47-30-74-25-184-11Z" fill="#F6E8C8"/>
+  <path d="M528 400c66-46 150-72 236-72 126 0 226 45 303 120-55 84-158 148-294 148-134 0-250-58-319-148 24-20 39-26 74-48Z" fill="#111A33"/>
+  <rect x="272" y="588" width="552" height="144" rx="32" fill="#FFFFFF" fill-opacity="0.12"/>
+  <rect x="316" y="632" width="462" height="20" rx="10" fill="#F6E8C8"/>
+  <rect x="316" y="672" width="324" height="14" rx="7" fill="#F6E8C8" fill-opacity="0.72"/>
+  <circle cx="1232" cy="610" r="112" fill="#C9A24B" fill-opacity="0.9"/>
+  <path d="M1192 554v112l92-56z" fill="#08111E"/>
+  <defs>
+    <linearGradient id="bg" x1="110" y1="100" x2="1500" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172647"/>
+      <stop offset="1" stop-color="#0B1329"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,332 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum DiscountType {
+  PERCENT
+  FIXED
+}
+
+enum Role {
+  CUSTOMER
+  STYLIST
+  RECEPTIONIST
+  ADMIN
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum AppointmentSource {
+  ONLINE
+  WALK_IN
+  PHONE
+}
+
+enum TransactionStatus {
+  PENDING
+  PAID
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  SPLIT
+}
+
+enum InventoryReason {
+  SALE
+  RESTOCK
+  ADJUSTMENT
+  DAMAGE
+}
+
+enum NotificationChannel {
+  SMS
+  EMAIL
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FULFILLED
+  CANCELLED
+}
+
+enum ContactStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  role         Role
+  name         String
+  email        String   @unique
+  phone        String?
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  customer Customer?
+  staff    Staff?
+
+  notifications Notification[]
+
+  @@index([role])
+}
+
+model Customer {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  preferences          String?  @db.Text
+  allergiesNotes       String?  @db.Text
+  loyaltyPointsBalance Int      @default(0)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  appointments        Appointment[]
+  loyaltyTransactions LoyaltyTransaction[]
+  orders              Order[]
+}
+
+model Staff {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialties    String?
+  commissionRate Decimal  @default(0) @db.Decimal(5, 2)
+  workingHours   String?  @db.Text
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  appointments Appointment[]
+  transactions Transaction[]
+}
+
+model Service {
+  id              String   @id @default(cuid())
+  name            String
+  durationMinutes Int
+  price           Decimal  @db.Decimal(10, 2)
+  category        String?
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  appointmentServices  AppointmentService[]
+  transactionLineItems TransactionLineItem[]
+}
+
+model Appointment {
+  id         String            @id @default(cuid())
+  customerId String
+  customer   Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  staffId    String
+  staff      Staff             @relation(fields: [staffId], references: [id])
+  startTime  DateTime
+  endTime    DateTime
+  status     AppointmentStatus @default(PENDING)
+  source     AppointmentSource @default(ONLINE)
+  notes      String?           @db.Text
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  services    AppointmentService[]
+  transaction Transaction?
+
+  @@index([staffId, startTime])
+  @@index([customerId])
+}
+
+model AppointmentService {
+  id            String      @id @default(cuid())
+  appointmentId String
+  appointment   Appointment @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  serviceId     String
+  service       Service     @relation(fields: [serviceId], references: [id])
+
+  @@unique([appointmentId, serviceId])
+}
+
+model Transaction {
+  id            String            @id @default(cuid())
+  appointmentId String?           @unique
+  appointment   Appointment?      @relation(fields: [appointmentId], references: [id])
+  staffId       String
+  staff         Staff             @relation(fields: [staffId], references: [id])
+  subtotal      Decimal           @db.Decimal(10, 2)
+  tip           Decimal           @default(0) @db.Decimal(10, 2)
+  tax           Decimal           @default(0) @db.Decimal(10, 2)
+  total         Decimal           @db.Decimal(10, 2)
+  paymentMethod PaymentMethod
+  splitCashAmount Decimal?        @db.Decimal(10, 2)
+  splitCardAmount Decimal?        @db.Decimal(10, 2)
+  refundedAmount  Decimal         @default(0) @db.Decimal(10, 2)
+  status        TransactionStatus @default(PENDING)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  lineItems TransactionLineItem[]
+
+  @@index([staffId])
+}
+
+model TransactionLineItem {
+  id            String      @id @default(cuid())
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  serviceId     String?
+  service       Service?    @relation(fields: [serviceId], references: [id])
+  productId     String?
+  product       Product?    @relation(fields: [productId], references: [id])
+  description   String
+  quantity      Int         @default(1)
+  unitPrice     Decimal     @db.Decimal(10, 2)
+  lineTotal     Decimal     @db.Decimal(10, 2)
+}
+
+model Product {
+  id               String   @id @default(cuid())
+  name             String
+  sku              String   @unique
+  category         String?
+  description      String?  @db.Text
+  imageUrl         String?  @db.Text
+  stockQuantity    Int      @default(0)
+  reorderThreshold Int      @default(0)
+  unitCost         Decimal  @db.Decimal(10, 2)
+  unitPrice        Decimal  @db.Decimal(10, 2)
+  supplierNote     String?  @db.Text
+  featured         Boolean  @default(false)
+  homepagePosition Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  movements            InventoryMovement[]
+  transactionLineItems TransactionLineItem[]
+  orderItems           OrderItem[]
+}
+
+model InventoryMovement {
+  id            String          @id @default(cuid())
+  productId     String
+  product       Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantityDelta Int
+  reason        InventoryReason
+  note          String?
+  createdAt     DateTime        @default(now())
+
+  @@index([productId])
+}
+
+model LoyaltyTransaction {
+  id          String   @id @default(cuid())
+  customerId  String
+  customer    Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  pointsDelta Int
+  reason      String
+  createdAt   DateTime @default(now())
+
+  @@index([customerId])
+}
+
+model Notification {
+  id          String              @id @default(cuid())
+  recipientId String
+  recipient   User                @relation(fields: [recipientId], references: [id], onDelete: Cascade)
+  channel     NotificationChannel
+  template    String
+  status      NotificationStatus  @default(PENDING)
+  sentAt      DateTime?
+  createdAt   DateTime            @default(now())
+
+  @@index([recipientId])
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  customerId String
+  customer   Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  status     OrderStatus @default(PENDING)
+  subtotal   Decimal     @db.Decimal(10, 2)
+  total      Decimal     @db.Decimal(10, 2)
+  notes      String?     @db.Text
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  items OrderItem[]
+
+  @@index([customerId])
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product @relation(fields: [productId], references: [id])
+  productName String
+  quantity    Int
+  unitPrice   Decimal @db.Decimal(10, 2)
+  lineTotal   Decimal @db.Decimal(10, 2)
+
+  @@index([orderId])
+}
+
+model PromoCode {
+  id            String       @id @default(cuid())
+  code          String       @unique
+  discountType  DiscountType
+  discountValue Decimal      @db.Decimal(10, 2)
+  active        Boolean      @default(true)
+  usageLimit    Int?
+  usedCount     Int          @default(0)
+  expiresAt     DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model ContactMessage {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String        @db.Text
+  status    ContactStatus @default(NEW)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status])
+}
+
+model SiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  label     String
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}

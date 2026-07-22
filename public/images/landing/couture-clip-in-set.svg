@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-label="Couture clip-in set illustration">
+  <rect width="900" height="700" rx="36" fill="#08121F"/>
+  <rect x="60" y="60" width="780" height="580" rx="30" fill="url(#bg)"/>
+  <path d="M360 220c40-70 103-104 181-104 86 0 144 48 177 110-37 23-85 37-138 37-65 0-126-13-174-34-20-8-29-8-46-9Z" fill="#F5E8CC"/>
+  <path d="M338 252c54-26 108-38 167-38 70 0 129 24 176 65-24 63-68 112-126 138-58 26-125 26-184 0-58-27-103-76-120-138 22-10 48-16 87-27Z" fill="#111A33"/>
+  <rect x="260" y="430" width="380" height="120" rx="28" fill="#C9A24B" fill-opacity="0.9"/>
+  <rect x="296" y="464" width="308" height="16" rx="8" fill="#FFF7E6"/>
+  <rect x="296" y="492" width="212" height="12" rx="6" fill="#FFF7E6" fill-opacity="0.7"/>
+  <circle cx="680" cy="214" r="86" fill="#FFFFFF" fill-opacity="0.12"/>
+  <defs>
+    <linearGradient id="bg" x1="110" y1="90" x2="800" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172647"/>
+      <stop offset="1" stop-color="#0A1328"/>
+    </linearGradient>
+  </defs>
+</svg>

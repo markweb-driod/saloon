@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+/*
+ * Blue Renaissance — brand palette.
+ * Deep navy for luxury/depth, warm gold for premium accents,
+ * cream/slate neutrals to keep body copy readable.
+ */
+:root {
+  --background: #faf8f4;
+  --foreground: #10142b;
+
+  --color-navy-950: #05060f;
+  --color-navy-900: #0a0e27;
+  --color-navy-800: #111736;
+  --color-navy-700: #1a2350;
+  --color-navy-600: #243066;
+  --color-navy-500: #33417f;
+
+  --color-gold-600: #a4802f;
+  --color-gold-500: #c9a24b;
+  --color-gold-400: #d9bc7b;
+  --color-gold-300: #e8d5aa;
+
+  --color-cream-100: #faf8f4;
+  --color-cream-200: #f3efe4;
+  --color-cream-300: #e9e2d1;
+
+  --color-slate-600: #545b73;
+  --color-slate-500: #6f7690;
+}
+
+@theme inline {
+  --breakpoint-xs: 22rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-navy-950: var(--color-navy-950);
+  --color-navy-900: var(--color-navy-900);
+  --color-navy-800: var(--color-navy-800);
+  --color-navy-700: var(--color-navy-700);
+  --color-navy-600: var(--color-navy-600);
+  --color-navy-500: var(--color-navy-500);
+
+  --color-gold-600: var(--color-gold-600);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-300: var(--color-gold-300);
+
+  --color-cream-100: var(--color-cream-100);
+  --color-cream-200: var(--color-cream-200);
+  --color-cream-300: var(--color-cream-300);
+
+  --color-slate-600: var(--color-slate-600);
+  --color-slate-500: var(--color-slate-500);
+
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-gold-300);
+  color: var(--color-navy-950);
+}
+
+/* ---------- Motion system ---------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-3%, -4%) scale(1.06);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, 3%) scale(1.08);
+  }
+}
+
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes bounce-y {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(201, 162, 75, 0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-flip-x {
+  transform: perspective(1200px) rotateX(-65deg) translateY(10px);
+  transform-origin: bottom center;
+}
+
+.reveal-flip-x.in-view {
+  transform: perspective(1200px) rotateX(0deg) translateY(0);
+}
+
+.reveal-flip-y {
+  transform: perspective(1200px) rotateY(60deg);
+  transform-origin: left center;
+}
+
+.reveal-flip-y.in-view {
+  transform: perspective(1200px) rotateY(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-flip-x,
+  .reveal-flip-y {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 14s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 18s ease-in-out infinite;
+}
+
+.animate-gradient-pan {
+  background-size: 200% 200%;
+  animation: gradient-pan 10s ease infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3.5s linear infinite;
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+.animate-bounce-y {
+  animation: bounce-y 2.2s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+.text-gradient-gold {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-gold-300) 0%,
+    var(--color-cream-100) 25%,
+    var(--color-gold-400) 50%,
+    var(--color-cream-100) 75%,
+    var(--color-gold-300) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Perspective context for tilt/flip children */
+.perspective-container {
+  perspective: 1400px;
+}
+
+/* Keeps an element scrollable without showing a visible scrollbar track. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
