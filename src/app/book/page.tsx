@@ -3,6 +3,8 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import BookingFlow from "@/components/BookingFlow";
 
+export const dynamic = "force-dynamic";
+
 export default async function BookPage() {
   const [services, staffRecords] = await Promise.all([
     prisma.service.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
