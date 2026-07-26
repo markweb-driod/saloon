@@ -132,7 +132,7 @@ async function main() {
       category: "Shampoo",
       description:
         "A sulfate-free daily shampoo that replenishes moisture without weighing hair down. Formulated with hyaluronic acid and coconut extract for soft, hydrated strands after every wash.",
-      imageUrl: "https://loremflickr.com/600/600/shampoo?lock=401",
+      imageUrl: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1953&auto=format&fit=crop",
       stockQuantity: 20,
       reorderThreshold: 5,
       unitCost: 6,
@@ -146,7 +146,7 @@ async function main() {
       category: "Conditioner",
       description:
         "A deep-conditioning treatment that rebuilds the hair's protein structure, smoothing split ends and restoring elasticity to color-treated and heat-styled hair.",
-      imageUrl: "https://loremflickr.com/600/600/conditioner?lock=402",
+      imageUrl: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=2080&auto=format&fit=crop",
       stockQuantity: 20,
       reorderThreshold: 5,
       unitCost: 6.5,
@@ -160,7 +160,7 @@ async function main() {
       category: "Treatment",
       description:
         "A lightweight, fast-absorbing finishing oil pressed from Moroccan argan kernels. Tames frizz, adds mirror shine, and protects against heat up to 450°F.",
-      imageUrl: "https://loremflickr.com/600/600/arganoil?lock=403",
+      imageUrl: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1974&auto=format&fit=crop",
       stockQuantity: 12,
       reorderThreshold: 4,
       unitCost: 8,
@@ -174,7 +174,7 @@ async function main() {
       category: "Treatment",
       description:
         "A silicone-free smoothing serum that seals the cuticle for glass-like shine and all-day frizz control, without buildup or greasiness.",
-      imageUrl: "https://loremflickr.com/600/600/serum?lock=404",
+      imageUrl: "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1974&auto=format&fit=crop",
       stockQuantity: 15,
       reorderThreshold: 5,
       unitCost: 9,
@@ -189,7 +189,7 @@ async function main() {
       category: "Styling",
       description:
         "A weightless leave-in spray that forms a protective barrier against blow-dryers, curling irons, and flat irons up to 450°F, while adding touchable hold.",
-      imageUrl: "https://loremflickr.com/600/600/hairspray?lock=405",
+      imageUrl: "https://images.unsplash.com/photo-1599305090598-fe179d501227?q=80&w=1974&auto=format&fit=crop",
       stockQuantity: 18,
       reorderThreshold: 6,
       unitCost: 5.5,
@@ -201,7 +201,7 @@ async function main() {
       category: "Treatment",
       description:
         "An intensive leave-in mask enriched with keratin and biotin. Apply before bed once a week to wake up to visibly stronger, smoother, more resilient hair.",
-      imageUrl: "https://loremflickr.com/600/600/hairmask?lock=406",
+      imageUrl: "https://images.unsplash.com/photo-1608248593842-8d76e7b1c1e5?q=80&w=1953&auto=format&fit=crop",
       stockQuantity: 10,
       reorderThreshold: 4,
       unitCost: 10,

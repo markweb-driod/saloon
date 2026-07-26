@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: saloon_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-supersecretroot}
+      MYSQL_DATABASE: saloon
+      MYSQL_USER: saloon_user
+      MYSQL_PASSWORD: ${DB_PASSWORD:-supersecretpass}
+    # No port mapping here ensures strict isolation from the host machine
+    expose:
+      - "3306"
+    volumes:
+      - saloon_db_data:/var/lib/mysql
+    networks:
+      - saloon_network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: saloon_web
+    restart: always
+    environment:
+      # Use the docker service name (db) as the host
+      DATABASE_URL: mysql://saloon_user:${DB_PASSWORD:-supersecretpass}@db:3306/saloon?connection_limit=5&pool_timeout=10
+      NODE_ENV: production
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-yoursecrethere}
+    ports:
+      # Bind to 127.0.0.1 on the host to avoid port collisions and external exposure.
+      # The reverse proxy (Nginx/Traefik) on the host can route traffic to localhost:3050.
+      - "127.0.0.1:3050:3000"
+    depends_on:
+      - db
+    networks:
+      - saloon_network
+
+volumes:
+  saloon_db_data:
+
+networks:
+  saloon_network:
+    driver: bridge

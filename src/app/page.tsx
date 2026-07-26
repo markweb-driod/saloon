@@ -79,18 +79,18 @@ const COLLECTIONS = [
     title: "Raw Hair Wholesale",
     description: "Premium long-length selections curated for consistent shine and strength.",
     items: [
-      { label: "Silk Straight Reserve", price: "€89", src: "/images/landing/hero-collections.svg" },
-      { label: "Natural Wave Heritage", price: "€98", src: "/images/landing/couture-clip-in-set.svg" },
-      { label: "Soft Curl Atelier", price: "€119", src: "/images/landing/platinum-weft-bundle.svg" },
+      { label: "Silk Straight Reserve", price: "€89", src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=2069&auto=format&fit=crop" },
+      { label: "Natural Wave Heritage", price: "€98", src: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop" },
+      { label: "Soft Curl Atelier", price: "€119", src: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1974&auto=format&fit=crop" },
     ],
   },
   {
     title: "Bundles & Closures",
     description: "Seamless, polished finishes built for modern salon transformations.",
     items: [
-      { label: "Silk Closure Kit", price: "€139", src: "/images/landing/silk-closure-duo.svg" },
-      { label: "Deep Wave Bundle", price: "€99", src: "/images/landing/couture-clip-in-set.svg" },
-      { label: "Luxe Frontal Pair", price: "€149", src: "/images/landing/designer-lace-wig.svg" },
+      { label: "Silk Closure Kit", price: "€139", src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=2069&auto=format&fit=crop" },
+      { label: "Deep Wave Bundle", price: "€99", src: "https://images.unsplash.com/photo-1595956553066-fe24a8c33395?q=80&w=1974&auto=format&fit=crop" },
+      { label: "Luxe Frontal Pair", price: "€149", src: "https://images.unsplash.com/photo-1560015534-cee980ba7e13?q=80&w=1974&auto=format&fit=crop" },
     ],
   },
 ];
@@ -141,7 +141,7 @@ export default async function Home() {
 
   const spotlight =
     featuredProducts.length > 0
-      ? featuredProducts.map((p) => ({
+      ? featuredProducts.map((p, index) => ({
           title: p.name,
           description: p.description ?? "",
           price: `$${Number(p.unitPrice).toFixed(2)}`,

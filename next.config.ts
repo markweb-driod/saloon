@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   // Allows the dev server's HMR/asset requests when the app is accessed
   // through a tunnel/proxy host instead of localhost.
   allowedDevOrigins: ["rational-number.outray.app", "*.outray.app"],
+  output: "standalone",
 };
 
 export default nextConfig;
