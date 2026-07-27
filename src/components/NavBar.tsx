@@ -103,11 +103,11 @@ export default function NavBar() {
           {(showMarketingLinks || loading) && (
             <div className="hidden md:block">
               <LinkButton
-                href="/quote"
+                href="/consultation"
                 variant="gold"
                 className="px-5 py-2.5 text-xs lg:px-6 lg:py-3 lg:text-sm"
               >
-                Request a Quote
+                Book Consultation
               </LinkButton>
             </div>
           )}
