@@ -82,7 +82,7 @@ export default async function DashboardOverviewPage() {
       select: { status: true },
     }),
     canSeeSales
-      ? prisma.$queryRaw<{ count: bigint }[]>`SELECT COUNT(*) as count FROM product WHERE stockQuantity <= reorderThreshold`
+      ? prisma.$queryRaw<{ count: bigint }[]>`SELECT COUNT(*) as count FROM Product WHERE stockQuantity <= reorderThreshold`
       : Promise.resolve([{ count: BigInt(0) }]),
     canSeeSales
       ? prisma.transaction.aggregate({
